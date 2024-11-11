@@ -27,3 +27,16 @@ class Netflow:
     fields: NetflowFields
     timestamp: int
     tags: dict[str, Any]
+
+    def __getitem__(self, key):
+        match key:
+            case 'src':
+                return self.fields.src
+            case 'dst':
+                return self.fields.dst
+            case 'flow_start_ms':
+                return self.fields.flow_start_ms
+            case 'flow_end_ms':
+                return self.fields.flow_end_ms
+            case k:
+                raise Exception(f'getter for {k} field needs implementing')
